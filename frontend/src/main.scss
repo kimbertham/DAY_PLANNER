@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+.fp {
+  width: 100vw;
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
