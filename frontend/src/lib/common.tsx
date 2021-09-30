@@ -5,3 +5,5 @@ export const readable = (str: string) => {
       return str.toUpperCase() 
     })
 }
+
+export const defaultImg = 'https://bit.ly/39TyMWy'

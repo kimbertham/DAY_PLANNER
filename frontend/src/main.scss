@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  background: #171717;
+  color: white;
+  font-family: 'Lexend', sans-serif;
 }
 
 .fp {
@@ -12,4 +15,34 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex {
+  display: flex;
+}
+
+.relative {
+  position: relative;
+}
+
+.right {
+  @extend .flex, .flex-grow;
+  // border: 2px solid blue;
+  flex-direction: column;
+}
+
+.content {
+  @extend .flex, .flex-grow;
+  padding: 20px 40px;
+  // border: 2px solid red;
+}
+
+.capitalize {
+&:first-letter {
+  text-transform:capitalize;
+}
 }

@@ -26,7 +26,7 @@ const db = mongoose.connection;
 
 app.use(express.static(`${__dirname}/dist`))
 app.use(json())
-app.get('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
+// app.get('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
 
 
 app.use('/api', router)

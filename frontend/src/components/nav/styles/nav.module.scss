@@ -1,0 +1,57 @@
+@import '../../../main.scss';
+
+
+.Sidenav {
+  @extend .center;
+  width: 15vw;
+  height: 100vh;
+  background-color: rgb(16, 16, 16);
+  color: rgb(165, 165, 165);
+}
+
+.item{
+  @extend .flex, .relative;
+  flex-direction: row;
+  padding: 1vw 2vw;
+  
+  img{
+  width: 1.5vw;
+  align-self: center;
+  mix-blend-mode: lighten;
+  }
+  
+  p{
+    margin: 5px 1vw;
+    font-size: 80%;
+  }
+}
+
+
+
+.topnav{
+  @extend .flex;
+  height: 8vh;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgb(16, 16, 16);
+  font-size: 12px;
+  .topIcons {
+    @extend .flex;
+    justify-content: space-evenly;
+    width: 15vw;
+    .icon{
+    width: 1.5vw;
+    align-self: center;
+    }
+  }
+
+  .topnavProfile {
+    @extend .center;
+    flex-direction: row;
+    img {
+      margin:0 10px;
+      width: 2vw;
+      border-radius: 50%;
+    }
+  }
+}
