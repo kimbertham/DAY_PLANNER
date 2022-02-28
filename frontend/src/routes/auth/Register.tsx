@@ -3,11 +3,13 @@ import axios from 'axios'
 import { readable } from  '../../lib/common'
 import { Link, useHistory } from 'react-router-dom'
 import { IRegister } from '../../types/auth'
+import { useAppDispatch } from '../../state/hooks'
+import { register } from '../../state/thunks/auth'
 
 const initial = { firstName: 'kimberley', lastName: 'tham', email: 'kimberley@mail', password: 'pass', passwordConfirmation: 'pass' }
 
 const Register = () => {
-
+  const AppDispatch = useAppDispatch()
   const [data, setData] = useState<IRegister>(initial)
   const [invalid, setInvalid] = useState(false)
   const history = useHistory()
@@ -17,6 +19,7 @@ const Register = () => {
   useEffect(() => {
     if (invalid)  setTimeout(() => setInvalid(false), 1000)
   })
+
 
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

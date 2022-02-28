@@ -25,4 +25,4 @@ const journalSchema = new mongoose.Schema({
 	strict: false
 })
 
-export const journalModel = mongoose.model<IJournal>('Tasks',journalSchema)
+export const journalModel = mongoose.model<IJournal>('Journal',journalSchema)

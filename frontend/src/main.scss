@@ -10,11 +10,16 @@ body {
   height: 100vh;
 }
 
-.center {
+.centerCol {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.centerRow {
+  @extend .centerCol;
+  flex-direction: row;
 }
 
 .flex-grow {
@@ -25,20 +30,14 @@ body {
   display: flex;
 }
 
-.relative {
-  position: relative;
-}
-
 .right {
   @extend .flex, .flex-grow;
-  // border: 2px solid blue;
   flex-direction: column;
 }
 
 .content {
   @extend .flex, .flex-grow;
   padding: 20px 40px;
-  // border: 2px solid red;
 }
 
 .capitalize {
@@ -54,4 +53,8 @@ body {
   border: 1px solid rgb(5, 5, 174);
   border-radius: 5%;
   padding: 15px;
+}
+
+.f-right{
+  float: right;
 }

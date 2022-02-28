@@ -1,20 +1,17 @@
 import * as mongoose from 'mongoose'
 import { IUser } from '../frontend/src/types/auth'
+import {EMeals} from '../frontend/src/types/meal'
 
-export interface ITask {
+export interface IFinance {
   title: string
   time: {
     date: Date
     time?: number
   },
-  completed?: {
-    checked: boolean
-    date: Date
-    time: number
-  },
+  type: EMeals
   owner?: IUser
-  content: string,
-	tags: string[]
+  recipe: string,
+  ingredients: string
 }
 
 const taskSchema = new mongoose.Schema({
@@ -23,17 +20,13 @@ const taskSchema = new mongoose.Schema({
 		date: { type: Date, required: true },
 		time: { type: Number, required: false }
 	},
-	completed: {
-		checked: { type: Boolean, default: false },
-		date: { type: Date },
-		time: { type: Number}
-	},
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	content: { type: String, required: true},
-	tags: {type: [String], required:false}
+  recipe: { type: String, required: false},
+  ingredients: { type: String, required: false},
+  type: { type: String, enum:[EMeals]}
 }, {
 	timestamps: true,
 	strict: false
 })
 
-export const taskModel = mongoose.model<ITask>('Tasks', taskSchema)
+export const mealModel = mongoose.model<IMeal>('Meal', taskSchema)

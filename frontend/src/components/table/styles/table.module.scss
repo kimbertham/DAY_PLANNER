@@ -1,0 +1,20 @@
+@import '../../../main.scss';
+
+.table {
+th {
+  border: 1px solid red;
+  padding: 0 20px;
+}
+td {
+  outline: red;
+  border: 1px solid red;
+  padding: 0 20px;
+}
+
+tr {
+  outline:green;
+  border: 1px solid green;
+  padding: 0 20px;
+}
+
+}

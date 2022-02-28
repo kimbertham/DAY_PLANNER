@@ -1,0 +1,38 @@
+
+@import '../../../main.scss';
+
+.button {
+  color: rgb(165, 165, 165);
+  margin: 4px;
+}
+
+.primaryButton {
+  background-color: black;
+  border: 1px solid blue;
+  &:hover {
+    color: rgb(255, 255, 255);
+    background-color: blue;
+    border: 1px solid rgb(255, 255, 255)
+  }
+}
+
+.secondaryButton {
+  background-color: black;
+  border: 1px solid rgb(169, 167, 167);
+  &:hover {
+    color: rgb(10, 10, 10);
+    background-color: rgb(169, 167, 167);
+    border: 1px solid black
+  }
+}
+
+.small {
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 5px;
+}
+
+.large {
+  padding: 8px 15px;
+}
+

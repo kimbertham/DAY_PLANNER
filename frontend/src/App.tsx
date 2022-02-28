@@ -7,6 +7,8 @@ import Home from './routes/dashboard/Home'
 
 import Sidenav from './components/nav/Sidenav'
 import Topnav from './components/nav/Topnav'
+import Habits from './routes/habits/Habits'
+import { Modal } from './components/modal/Modal'
 
 
 const App = () => {
@@ -22,9 +24,10 @@ const App = () => {
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
               <Route path='/home' component={Home}/>
+              <Route path='/habits' component={Habits}/>
             </Switch>
           </div>
-        </div>
+        </div>    
       </BrowserRouter> 
     </div>
   )

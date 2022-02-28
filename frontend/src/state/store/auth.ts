@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from '../../types/auth'
-import { loginUser } from '../thunks/auth'
+import { loginUser, register } from '../thunks/auth'
 
 interface InitialAuth {
   user?: IUser
@@ -20,6 +20,7 @@ export const authSlice = createSlice({
       const { user } = action.payload
       state.user = user
     })
-
+  
+  
   }
 })

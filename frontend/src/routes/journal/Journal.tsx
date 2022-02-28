@@ -6,49 +6,39 @@ import { headers } from '../../lib/auth'
 const Journal = () => {
   // const testing = useAppSelector((state) =>state.auth.user)
 
-  const testNewTast = async (e:any) => {
+  const newJournal = async (e:any) => {
     e.preventDefault()
-    const res = await axios.post('api/newTask',
+    const res = await axios.post('api/newJournal',
       { title: 'hi',
         time: {
           date: '10/06/1008' ,
           time: '1234'
         },
-        completed: {
-          checked: false
-        },
-        content: 'helllo'
+        content: 'helllo journal entry'
       }, headers)
     console.log(res)
 
   }
 
-  const delTask = async (e: any) => {
+  const delJournal = async (e: any) => {
     e.preventDefault()
-    const res = await axios.post('api/delTask', { id: 'all' }, headers)
+    const res = await axios.post('api/delJournal', { id: 'all' }, headers)
     console.log(res)
 
   }
 
-  const getNewTask = async (e:any) => {
+  const getJournal = async (e:any) => {
     e.preventDefault()
-    const res = await axios.post('api/getTask', { id: 'all' }, headers)
-    console.log(res)
+    const res = await axios.post('api/getJournal', { id: '6158c5805480c456219a9292' }, headers)
+    console.log(res.data)
   }
 
-  const updateTask =  async (e:any) => {
+  const updateJournal =  async (e:any) => {
     e.preventDefault()
-    const res = await axios.post('api/updateTask', {
-      data: { title: 'hellloo',
-        time: {
-          date: '10/06/1008' ,
-          time: '1234'
-        },
-        completed: {
-          checked: false
-        },
-        content: 'UPDATED'
-      }, id: '6154e32edc0dc9530d9fdde1' }
+    const res = await axios.post('api/updateJournal', {
+      data: { 
+        content: 'helllo journal entry UPDATED'
+      }, id: '6158c5805480c456219a9292' }
     , headers)
     console.log(res)
   }
@@ -60,10 +50,10 @@ const Journal = () => {
 
 
         <form>
-          <button onClick={testNewTast}>New Journal</button>
-          <button onClick={getNewTask}> Get Journal</button>
-          <button onClick={delTask}> Delete Journal</button>
-          <button onClick={updateTask}> update Journal</button>
+          <button onClick={newJournal}>New Journal</button>
+          <button onClick={getJournal}> Get Journal</button>
+          <button onClick={delJournal}> Delete Journal</button>
+          <button onClick={updateJournal}> update Journal</button>
 
         </form>
       </div>

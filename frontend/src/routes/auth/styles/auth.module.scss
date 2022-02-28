@@ -1,7 +1,7 @@
 @import '../../../main.scss';
 
 .auth {
-  @extend .fp, .center;
+  @extend .fp, .centerCol;
 
   background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2) ), url('./cityscape.jpg');
   background-size: cover;

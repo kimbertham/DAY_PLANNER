@@ -1,26 +1,14 @@
 import * as mongoose from 'mongoose'
-import { IUser } from '../frontend/src/types/auth'
-
-interface IHabits {
-  title: string,
-  frequency: number,
-  description: string,
-  owner:IUser,
-  units?:  IHabitUnits[]
-}
-
-interface IHabitUnits {
-  notes: string,
-  checked: boolean,
-  completeTime: Date
-}
+import {IHabits, IHabitUnits} from '../frontend/src/types/habits'
+import moment from 'moment'
 
 const habitSchema = new mongoose.Schema({
 	title:{type: String, required: true},
-	frequency:{type: Number, required: true},
+	weekDays:[{type:String, enum: moment.weekdays(), required:true}],
 	description:{type: String, required: false},
 	owner:{type:mongoose.Schema.Types.ObjectId, ref: 'User'},
   units: [{type:mongoose.Schema.Types.ObjectId, ref: 'HabitUnits', required:false}],
+	startDate:{type:String, required:true},
 	
 }, {
 	timestamps: true,
@@ -28,7 +16,7 @@ const habitSchema = new mongoose.Schema({
 
 const habitUnitSchema= new mongoose.Schema({
 	habit:{type:mongoose.Schema.Types.ObjectId, ref: 'Habits'},
-	date:{type: Date, required: true},
+	date:{type: String, required: true},
 	checked:{type: Boolean, required: false, default:false},
 	owner:{type:mongoose.Schema.Types.ObjectId,},
 }, {

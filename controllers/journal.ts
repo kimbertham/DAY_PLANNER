@@ -5,7 +5,7 @@ import {ICustomReq} from '../lib/customReq'
 
 async function getJournal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-		const journal = req.params.id === 'all' ?
+		const journal = req.body.id === 'all' ?
 			await journalModel.find({ owner: req.currentUser}) 
 			: await journalModel.findById(req.params.id)
 		res.status(200).json(journal)
@@ -26,7 +26,7 @@ async function newJournal(req: ICustomReq, res: Response, next: NextFunction) {
 
 async function delJournal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-    await journalModel.findOneAndDelete(req.body.id)
+  await journalModel.findOneAndDelete(req.body.id)
 		res.status(204).json()
 	} catch (err) {
 		next(err)

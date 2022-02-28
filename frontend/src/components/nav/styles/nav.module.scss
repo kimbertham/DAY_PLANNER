@@ -2,15 +2,23 @@
 
 
 .Sidenav {
-  @extend .center;
+  @extend .centerCol;
   width: 15vw;
   height: 100vh;
   background-color: rgb(16, 16, 16);
-  color: rgb(165, 165, 165);
+  * {
+    color: rgb(165, 165, 165);
+    text-decoration: none;
+  }
+}
+
+.collapse {
+  @extend .Sidenav;
+  width: 5vw;
 }
 
 .item{
-  @extend .flex, .relative;
+  @extend .flex;
   flex-direction: row;
   padding: 1vw 2vw;
   
@@ -23,6 +31,7 @@
   p{
     margin: 5px 1vw;
     font-size: 80%;
+    cursor: pointer;
   }
 }
 
@@ -46,7 +55,7 @@
   }
 
   .topnavProfile {
-    @extend .center;
+    @extend .centerCol;
     flex-direction: row;
     img {
       margin:0 10px;
@@ -54,4 +63,10 @@
       border-radius: 50%;
     }
   }
+}
+
+.arrows{
+  color: rgb(84, 84, 84);
+  font-size: 13px;
+  cursor: pointer;
 }

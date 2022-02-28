@@ -67,7 +67,7 @@
         "beforeColon": false
       }
     ],
-    "no-unused-vars":"warn",
+    "no-unused-vars":"off",
     "no-console": "off",
     "no-fallthrough": "warn",
     "prefer-const": "error",

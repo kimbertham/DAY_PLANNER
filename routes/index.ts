@@ -5,6 +5,8 @@ const auth = require('../controllers/auth')
 const task = require('../controllers/task')
 const habit =  require('../controllers/habits')
 const journal = require('../controllers/journal')
+const meal = require('../controllers/meal')
+
 
 
 //------------auth------------------
@@ -43,6 +45,8 @@ router.route('/delHabit')
 router.route('/updateHabit')
 	.post(secureRoute, habit.updateHabit)
 
+
+
 //------------unit habits------------
 
 router.route('/getHabitUnit')
@@ -57,6 +61,9 @@ router.route('/delHabitUnit')
 router.route('/updateHabitUnit')
 	.post(secureRoute, habit.updateHabitUnit)
 
+	router.route('/getHabitByDate')
+	.post(secureRoute, habit.getHabitUnitByDate)
+
 	//------------Journal--------------
 
 	router.route('/getJournal')
@@ -70,6 +77,20 @@ router.route('/delJournal')
 
 router.route('/updateJournal')
 	.post(secureRoute, journal.updateJournal)
+
+	//--------------Meal---------------
+
+	router.route('/getMeal')
+	.post(secureRoute, meal.getMeal)
+
+router.route('/newMeal')
+	.post(secureRoute, meal.newMeal)
+
+router.route('/delMeal')
+	.post(secureRoute, meal.delMeal)
+
+router.route('/updateMeal')
+	.post(secureRoute, meal.updateMeal)
 
 	//---------------------------------
 
