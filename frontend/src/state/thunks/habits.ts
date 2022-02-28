@@ -15,7 +15,7 @@ export const newHabit = createAsyncThunk(
   }
 )
 export const delHabit =  createAsyncThunk(
-  'habits/delHabit', (data:{id: string}) => {
+  'habits/delHabit', (data: IHabits) => {
     return  habits.delHabit(data)
   }
 )

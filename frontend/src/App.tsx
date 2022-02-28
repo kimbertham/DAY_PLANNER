@@ -8,8 +8,7 @@ import Home from './routes/dashboard/Home'
 import Sidenav from './components/nav/Sidenav'
 import Topnav from './components/nav/Topnav'
 import Habits from './routes/habits/Habits'
-import { Modal } from './components/modal/Modal'
-
+import HabitDetail from './routes/habits/HabitDetail'
 
 const App = () => {
 
@@ -24,6 +23,7 @@ const App = () => {
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
               <Route path='/home' component={Home}/>
+              <Route path='/habit/:id' component={HabitDetail}/>
               <Route path='/habits' component={Habits}/>
             </Switch>
           </div>

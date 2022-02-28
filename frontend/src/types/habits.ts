@@ -15,7 +15,7 @@ export interface IHabitUnits {
 
 
 export interface IHabits {
-  id?: string,
+  _id?: string,
   title: string,
   weekDays: string[],
   description: string,

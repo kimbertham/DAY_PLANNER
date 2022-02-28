@@ -25,14 +25,14 @@ export const habitSlice = createSlice({
       state.habits = [...state.habits, action.payload]
     })
     builder.addCase(delHabit.fulfilled , (state, action) => {
-      state.habits = [...state.habits.filter(h => action.payload !== h.id)]
+      state.habits = [...state.habits.filter(h => action.payload !== h._id)]
     })
     builder.addCase(updateHabitUnit.fulfilled , (state, action) => {
       const removed = state.habitUnits.filter(habit => habit.id !== action.payload.id)
       state.habitUnits = [...removed , action.payload]
     })
     builder.addCase(newHabitUnit.fulfilled , (state, action) => {
-      const index = state.habits.findIndex(h => h.id === action.payload.habit.id)
+      const index = state.habits.findIndex(h => h._id === action.payload.habit)
       state.habits[index].units?.push(action.payload)
       state.habits = [...state.habits]
     })

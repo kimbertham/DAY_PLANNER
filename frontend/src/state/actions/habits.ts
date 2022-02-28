@@ -13,8 +13,8 @@ export const habits = {
     return res.data
   }
   ,
-  delHabit: async (data: {id :string}) => {
-    const res = data.id !== 'all' ? 
+  delHabit: async (data: IHabits) => {
+    const res = data._id !== 'all' ? 
       await axios.post('api/delHabit', data, headers) :
       await axios.post('api/delHabit', 'all', headers)
     return res.data
@@ -26,7 +26,6 @@ export const habits = {
   //----------------------------------------
   newHabitUnit: async (data: IHabitUnits) => {
     const res = await axios.post('api/newHabitUnit', data, headers)
-    console.log(res.data)
     return res.data
   },
   getHabitUnitsByDate: async (data :{habit: string,start: string,end: string}) => {
