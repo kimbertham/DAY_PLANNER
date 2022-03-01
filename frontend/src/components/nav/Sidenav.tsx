@@ -21,10 +21,12 @@ const Sidenav = () => {
   return (
     <div className={collapse ? styles.collapse : styles.Sidenav}>
 
-      <div className={styles.item}>
-        <img src={date} alt='date'/>
-        {!collapse && <p>Today</p>}
-      </div>
+      <Link to='/home'>
+        <div className={styles.item}>
+          <img src={date} alt='date'/>
+          {!collapse && <p>Today</p>}
+        </div>
+      </Link>
       
       <div className={styles.item}>
         <img src={date} alt='date'/>
@@ -48,10 +50,12 @@ const Sidenav = () => {
         {!collapse && <p>Finance</p>}
       </div>
 
-      <div className={styles.item}>
-        <img src={journal} alt='journal'/>
-        {!collapse && <p>Journal</p>}
-      </div>
+      <Link to='/journal'>
+        <div className={styles.item}>
+          <img src={journal} alt='journal'/>
+          {!collapse && <p>Journal</p>}
+        </div>
+      </Link>
 
       <div className={styles.item}>
         <img src={work} alt='work'/>

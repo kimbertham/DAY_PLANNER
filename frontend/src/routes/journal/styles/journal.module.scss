@@ -1,0 +1,15 @@
+@import '../../../main.scss';
+
+.latest {
+  width: 20vw;
+  border-right: 2px solid red;
+  cursor: pointer;
+}
+
+.lateEntry {
+  border: 1px solid green;
+}
+
+.new {
+  padding: 0 20px;
+}

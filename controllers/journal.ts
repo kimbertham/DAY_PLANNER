@@ -1,5 +1,5 @@
 import { Response, NextFunction } from 'express'
-import { journalModel } from '../models/journal'
+import { IJournal, journalModel } from '../models/journal'
 import {ICustomReq} from '../lib/customReq'
 
 
@@ -27,7 +27,7 @@ async function newJournal(req: ICustomReq, res: Response, next: NextFunction) {
 async function delJournal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
   await journalModel.findOneAndDelete(req.body.id)
-		res.status(204).json()
+		res.status(204).json(req.body.id)
 	} catch (err) {
 		next(err)
 	}
@@ -35,8 +35,17 @@ async function delJournal(req: ICustomReq, res: Response, next: NextFunction) {
 
 async function updateJournal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-		const journal = await journalModel.findOneAndUpdate(req.body.id, req.body.data)
-		res.status(204).json(journal)
+		const journal = await journalModel.findOneAndUpdate(
+			{_id:req.body._id}, 
+			{
+				favorite: req.body.favorite,
+				title: req.body.title,
+				content: req.body.content
+			}, 
+			{new: true})
+			console.log(req.body._id)
+			console.log(journal)
+		res.status(201).json(journal)
 	} catch (err) {
 		next(err)
 	}
