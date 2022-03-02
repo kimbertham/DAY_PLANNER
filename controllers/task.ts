@@ -5,9 +5,21 @@ import {ICustomReq} from '../lib/customReq'
 
 async function getTask(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-		const tasks = req.body.id === 'all' ?
+		const tasks = req.params.id === 'all' ?
 			await taskModel.find({ owner: req.currentUser}) 
 			: await taskModel.findById(req.params.id)
+		res.status(200).json(tasks)
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function getTaskByDate(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const tasks = await taskModel.find({	
+			owner: req.currentUser, 
+			'time.date': req.params.date 
+		})
 		res.status(200).json(tasks)
 	} catch (err) {
 		next(err)
@@ -26,7 +38,7 @@ async function newTask(req: ICustomReq, res: Response, next: NextFunction) {
 
 async function delTask(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-		req.body.id === 'all' ?
+		req.params.taskId === 'all' ?
 			await taskModel.deleteMany({owner: req.currentUser})
 			:	await taskModel.findOneAndDelete(req.body.id)
 		res.status(204).json()
@@ -46,6 +58,7 @@ async function updateTask(req: ICustomReq, res: Response, next: NextFunction) {
 
 module.exports = {
 	getTask,
+	getTaskByDate,
 	newTask,
 	delTask,
 	updateTask

@@ -10,6 +10,8 @@ import Topnav from './components/nav/Topnav'
 import Habits from './routes/habits/Habits'
 import HabitDetail from './routes/habits/HabitDetail'
 import Journal from './routes/journal/Journal'
+import Tasks from './routes/tasks/Tasks'
+
 const App = () => {
 
   return ( 
@@ -26,6 +28,7 @@ const App = () => {
               <Route path='/habit/:id' component={HabitDetail}/>
               <Route path='/habits' component={Habits}/>
               <Route path='/journal' component={Journal}/>
+              <Route path='/tasks' component={Tasks}/>
             </Switch>
           </div>
         </div>    

@@ -1,72 +1,29 @@
-import React from 'react'
-import axios from 'axios'
-// import { useAppSelector } from '../../state/hooks'
-import { headers } from '../../lib/auth'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../state/hooks'
+import { getTasksByDate } from '../../state/thunks/tasks'
+import Agenda from './Agenda'
+import NewTask from './NewTask'
+import moment from 'moment'
+
+const currentDate = moment().format('YYYY-MM-DD')
 
 const Tasks = () => {
-  // const testing = useAppSelector((state) =>state.auth.user)
+  const AppDispatch = useAppDispatch()
+  const tasks = useAppSelector((state) => state.tasks.tasks )
+  const [date, setDate] = useState(currentDate)
 
-  const testNewTast = async (e:any) => {
-    e.preventDefault()
-    const res = await axios.post('api/newTask',
-      { title: 'hi',
-        time: {
-          date: '10/06/1008' ,
-          time: '1234'
-        },
-        completed: {
-          checked: false
-        },
-        content: 'helllo'
-      }, headers)
-    console.log(res)
 
-  }
+  useEffect(() => {
+    AppDispatch(getTasksByDate(date))
+  }, [])
 
-  const delTask = async (e: any) => {
-    e.preventDefault()
-    const res = await axios.post('api/delTask', { id: 'all' }, headers)
-    console.log(res)
-
-  }
-
-  const getNewTask = async (e:any) => {
-    e.preventDefault()
-    const res = await axios.post('api/getTask', { id: 'all' }, headers)
-    console.log(res)
-  }
-
-  const updateTask =  async (e:any) => {
-    e.preventDefault()
-    const res = await axios.post('api/updateTask', {
-      data: { title: 'hellloo',
-        time: {
-          date: '10/06/1008' ,
-          time: '1234'
-        },
-        completed: {
-          checked: false
-        },
-        content: 'UPDATED'
-      }, id: '6154e32edc0dc9530d9fdde1' }
-    , headers)
-    console.log(res)
-  }
 
   return (
     <div>
-      <div className={'box'}>
-        <h1>Schedule</h1>
+      <NewTask date={date}/>
+      <Agenda tasks={tasks}/>
 
-
-        <form>
-          <button onClick={testNewTast}>New Task</button>
-          <button onClick={getNewTask}> Get Task</button>
-          <button onClick={delTask}> Delete Task</button>
-          <button onClick={updateTask}> update Task</button>
-
-        </form>
-      </div>
     </div>
   )
 }

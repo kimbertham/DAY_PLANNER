@@ -3,9 +3,8 @@ import React , { useEffect } from 'react'
 import { useAppSelector } from '../../state/hooks'
 import HabitsTable from './HabitsTable'
 import NewHabit from './NewHabit'
-import { delHabit,  getHabits } from '../../state/thunks/habits'
+import {  getHabits } from '../../state/thunks/habits'
 import { useAppDispatch } from '../../state/hooks'
-import moment from 'moment'
 
 
 const Habits = () => {

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from '../../types/auth'
-import { loginUser, register } from '../thunks/auth'
+import { loginUser } from '../thunks/auth'
 
 interface InitialAuth {
   user?: IUser

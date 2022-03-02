@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'
 import { authSlice } from './auth'
 import { habitSlice } from './habits'
 import { journalSlice } from './journal'
+import { taskSlice } from './tasks'
 
 const persistConfig = {
   key: 'root',
@@ -14,7 +15,8 @@ const persistConfig = {
 const reducers =  combineReducers({
   auth: authSlice.reducer,
   habits: habitSlice.reducer,
-  journals: journalSlice.reducer
+  journals: journalSlice.reducer,
+  tasks: taskSlice.reducer
 })
 
 export const store = configureStore({

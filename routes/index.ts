@@ -19,14 +19,18 @@ router.route('/register')
 
 	//------------tasks---------------
 
-router.route('/getTask')
-	.post(secureRoute, task.getTask)
+
+	router.route('/getTasksByDate/:date')
+	.get(secureRoute, task.getTaskByDate)
+
+router.route('/getTask/:id')
+	.get(secureRoute, task.getTask)
 
 router.route('/newTask')
 	.post(secureRoute, task.newTask)
 
-router.route('/delTask')
-	.post(secureRoute, task.delTask)
+router.route('/delTask/:taskId')
+	.delete(secureRoute, task.delTask)
 
 router.route('/updateTask')
 	.post(secureRoute, task.updateTask)

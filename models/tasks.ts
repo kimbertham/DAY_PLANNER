@@ -4,13 +4,13 @@ import { IUser } from '../frontend/src/types/auth'
 export interface ITask {
   title: string
   time: {
-    date: Date
-    time?: number
+    date: string
+    time?: string
   },
   completed?: {
     checked: boolean
-    date: Date
-    time: number
+    date: string
+    time: string
   },
   owner?: IUser
   content: string,
@@ -20,13 +20,13 @@ export interface ITask {
 const taskSchema = new mongoose.Schema({
 	title: { type: String, required: true },
 	time: {
-		date: { type: Date, required: true },
-		time: { type: Number, required: false }
+		date: { type: String, required: true },
+		time: { type: String, required: false }
 	},
 	completed: {
 		checked: { type: Boolean, default: false },
-		date: { type: Date },
-		time: { type: Number}
+		date: { type: String },
+		time: { type: String}
 	},
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	content: { type: String, required: true},

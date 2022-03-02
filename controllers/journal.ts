@@ -5,9 +5,15 @@ import {ICustomReq} from '../lib/customReq'
 
 async function getJournal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-		const journal = req.body.id === 'all' ?
-			await journalModel.find({ owner: req.currentUser}) 
-			: await journalModel.findById(req.params.id)
+		let journal
+		if (req.body.id === 'all') {
+			journal = await journalModel.find({ owner: req.currentUser})
+		} else if (req.body.id === 'favorite') {
+			journal = await journalModel.find({ owner: req.currentUser, favorite: true}) 
+		} else {
+			journal = await journalModel.findById(req.params.id)
+		}	
+		console.log(journal)
 		res.status(200).json(journal)
 	} catch (err) {
 		next(err)
@@ -26,7 +32,7 @@ async function newJournal(req: ICustomReq, res: Response, next: NextFunction) {
 
 async function delJournal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
-  await journalModel.findOneAndDelete(req.body.id)
+  await journalModel.findOneAndDelete({_id:req.body._id})
 		res.status(204).json(req.body.id)
 	} catch (err) {
 		next(err)
@@ -43,8 +49,6 @@ async function updateJournal(req: ICustomReq, res: Response, next: NextFunction)
 				content: req.body.content
 			}, 
 			{new: true})
-			console.log(req.body._id)
-			console.log(journal)
 		res.status(201).json(journal)
 	} catch (err) {
 		next(err)

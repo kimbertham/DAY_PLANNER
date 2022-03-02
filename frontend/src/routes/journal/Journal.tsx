@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useAppSelector,useAppDispatch } from '../../state/hooks'
 import LatestJournals from './LatestJournals'
@@ -13,7 +14,7 @@ const Journal = () => {
 
   useEffect(() => {
     AppDispatch(getJournals('all'))
-  },[])
+  }, [])
 
   return (
     <div className='flex'> 

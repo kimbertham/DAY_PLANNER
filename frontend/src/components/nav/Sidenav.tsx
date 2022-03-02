@@ -33,10 +33,12 @@ const Sidenav = () => {
         {!collapse && <p>Calender</p>}
       </div>
 
-      <div className={styles.item}>
-        <img src={tasks} alt='tasks'/>
-        {!collapse && <p>Tasks</p>}
-      </div>
+      <Link to='/tasks'>
+        <div className={styles.item}>
+          <img src={tasks} alt='tasks'/>
+          {!collapse && <p>Tasks</p>}
+        </div>
+      </Link>
 
       <Link to='/habits'>
         <div className={styles.item}>
