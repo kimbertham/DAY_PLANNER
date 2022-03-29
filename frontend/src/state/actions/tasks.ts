@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { headers } from '../../lib/auth'
-import { ITask } from '../../types/tasks'
+import { ITask, ITag } from '../../types/tasks'
 
 
 export const tasks = {
@@ -12,8 +12,8 @@ export const tasks = {
     const res = await axios.get(`api/getTasksByDate/${date}`, headers)
     return res.data
   },
-  delTasks: async  (id:string) => {
-    const res = await axios.delete(`api/delTask/${id}`, headers)
+  delTasks: async  (data:ITask) => {
+    const res = await axios.delete(`api/delTask/${data._id}`, headers)
     return res.data
   },
   newTask: async  (data:ITask) => {
@@ -26,5 +26,19 @@ export const tasks = {
   }
 }
 
+export const tags = {
+  getTags: async  () => {
+    const res = await axios.get('api/getTags', headers)
+    return res.data
+  },
+  newTag: async  (data:ITag) => {
+    const res = await axios.post('api/newTag', data, headers)
+    return res.data
+  },
+  delTag: async  (id:string) => {
+    const res = await axios.delete(`api/delTag/${id}`, headers)
+    return res.data
+  }
+}
 
 

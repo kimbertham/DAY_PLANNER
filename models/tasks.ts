@@ -10,7 +10,8 @@ export interface ITask {
   completed?: {
     checked: boolean
     date: string
-    time: string
+    timeStart: string
+		timeEnd: string
   },
   owner?: IUser
   content: string,
@@ -21,7 +22,8 @@ const taskSchema = new mongoose.Schema({
 	title: { type: String, required: true },
 	time: {
 		date: { type: String, required: true },
-		time: { type: String, required: false }
+		timeStart: { type: String, required: false },
+		timeEnd: { type: String, required: false }
 	},
 	completed: {
 		checked: { type: Boolean, default: false },
@@ -30,10 +32,23 @@ const taskSchema = new mongoose.Schema({
 	},
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	content: { type: String, required: true},
-	tags: {type: [String], required:false}
+	tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tags'}],
+
 }, {
 	timestamps: true,
 	strict: false
 })
 
 export const taskModel = mongoose.model<ITask>('Tasks', taskSchema)
+
+const taskTagSchema = new mongoose.Schema({
+	title: { type: String, required: true },
+	tasks:{ type: mongoose.Schema.Types.ObjectId, ref: 'Tasks'},
+	color:{ type: String, required: true },
+}, {
+	timestamps: true,
+	strict: false
+})
+
+export const taskTagModel = mongoose.model<ITask>('Tags', taskTagSchema)
+

@@ -13,7 +13,6 @@ async function getJournal(req: ICustomReq, res: Response, next: NextFunction) {
 		} else {
 			journal = await journalModel.findById(req.params.id)
 		}	
-		console.log(journal)
 		res.status(200).json(journal)
 	} catch (err) {
 		next(err)

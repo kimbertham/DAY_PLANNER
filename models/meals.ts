@@ -11,19 +11,21 @@ export interface IMeal {
   type: EMeals
   owner?: IUser
   recipe: string,
-  ingredients: string
+  ingredients: string;
+  calories: string;
 }
 
 const taskSchema = new mongoose.Schema({
 	title: { type: String, required: true },
 	time: {
-		date: { type: Date, required: true },
-		time: { type: Number, required: false }
+		date: { type: String, required: true },
+		time: { type: String, required: false }
 	},
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   recipe: { type: String, required: false},
-  ingredients: { type: String, required: false},
-  type: { type: String, enum:[EMeals]}
+  ingredients: [{ type: String, required: false}],
+  type: { type: String, enum:[EMeals]},
+  calories: {type: Number, required: false}
 }, {
 	timestamps: true,
 	strict: false

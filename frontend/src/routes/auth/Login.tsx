@@ -26,6 +26,7 @@ const Login = () => {
     e.preventDefault()
     try {
       AppDispatch(loginUser(data))
+      
       history.push('/home')
     } catch (err) {
       setInvalid(true)

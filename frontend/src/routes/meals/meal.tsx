@@ -1,64 +1,45 @@
-import React from 'react'
-import axios from 'axios'
-import { EMeals } from '../../types/meal'
-// import { useAppSelector } from '../../state/hooks'
-import { headers } from '../../lib/auth'
+import React, { useEffect, useState } from 'react'
+import { useAppSelector, useAppDispatch } from '../../state/hooks'
+import { getMealByDate } from '../../state/thunks/meal'
+import MealDateCard from './MealCards'
+import MealNav from './MealNav'
+import NewMeal  from './NewMeal'
+import moment from 'moment'
 
 const Meal = () => {
-  // const testing = useAppSelector((state) =>state.auth.user)
+  const AppDispatch = useAppDispatch()
+  const [start, setStart] = useState(moment().format('YYYY-MM-DD'))
+  const [dates,setDates] = useState<string[]>([start])
+  const end =  moment(start).add(4, 'days').format('YYYY-MM-DD')
+  const meals = useAppSelector((state) => state.meal.groupedMeals)
 
-  const newMeal = async (e:any) => {
-    e.preventDefault()
-    const res = await axios.post('api/newMeal',
-      { title: 'hi',
-        time: {
-          date: '10/06/1008' ,
-          time: '1234'
-        },
-        recipe: 'MEal plan gello',
-        ingredients: 'helfdy fgo ndsME',
-        type: EMeals.BREAKFAST
-      }, headers)   
-    console.log(res)
-  }
+  useEffect(() => {
+    AppDispatch(getMealByDate({ 
+      startDate: start,
+      endDate: end }))
+  }, [start])
 
-  const delMeal = async (e: any) => {
-    e.preventDefault()
-    const res = await axios.post('api/delMeal', { id: 'all' }, headers)
-    console.log(res)
-
-  }
-
-  const getMeal = async (e:any) => {
-    e.preventDefault()
-    const res = await axios.post('api/getMeal', { id: 'all' }, headers)
-    console.log(res.data)
-  }
-
-  const updateMeal =  async (e:any) => {
-    e.preventDefault()
-    const res = await axios.post('api/updateMeal', {
-      data: { 
-        recipe: 'Meal UPDATED'
-      }, id: '6158d0c8462c03d3283d0493' }
-    , headers)
-    console.log(res)
-  }
+  useEffect(() => {
+    let date = moment(start)
+    while (!date.isSame(moment(end))){
+      date = date.clone().add(1, 'days')
+      dates.push(date.format('YYYY-MM-DD'))
+    }
+  },[start])
+  
+  console.log(start)
 
   return (
     <div>
-      <div className={'box'}>
-        <h1>Meal</h1>
+      <MealNav/>
+      <NewMeal/>
+      <MealDateCard 
+        meals={meals} 
+        dates={dates}  
+        start={start}
+        setStart={setStart}
+        setDates={setDates}/>
 
-
-        <form>
-          <button onClick={newMeal}>New Meal</button>
-          <button onClick={getMeal}> Get Meal</button>
-          <button onClick={delMeal}> Delete Meal</button>
-          <button onClick={updateMeal}> update Meal</button>
-
-        </form>
-      </div>
     </div>
   )
 }

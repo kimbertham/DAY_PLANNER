@@ -29,4 +29,4 @@ const taskSchema = new mongoose.Schema({
 	strict: false
 })
 
-export const mealModel = mongoose.model<IMeal>('Meal', taskSchema)
+export const mealModel = mongoose.model<IFinance>('Meal', taskSchema)

@@ -14,7 +14,6 @@ export const secureRoute = async (req:CustomRequest, res:Response, next: (arg0?:
     const token = req.headers.authorization.replace('Bearer ', '')
     const payload = await jwt.verify(token, secret)
     const user = await userModel.findById(payload.sub)
-
     if (!user) {
       throw new Error('Unauthorized')
     } else {

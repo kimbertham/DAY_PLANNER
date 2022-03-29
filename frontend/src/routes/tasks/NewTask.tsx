@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 import moment from 'moment'
-import { ITask } from '../../types/tasks'
+import { ITask, ITag } from '../../types/tasks'
 import { useAppDispatch } from '../../state/hooks'
 import { getTasksByDate, newTask } from '../../state/thunks/tasks'
 import { Modal } from '../../components/modal/Modal'
@@ -9,6 +9,7 @@ import { Button } from '../../components/Button/Button'
 
 interface NewTaskProps {
   date: string;
+  tags: ITag[]
 }
 
 const intialTask = {
@@ -18,14 +19,17 @@ const intialTask = {
   },
   completed: {
     checked: false
-  }
+  },
+  tags: []
 }
 
-const NewTask = ({ date }:NewTaskProps) =>{
+const NewTask = ({ date, tags }:NewTaskProps) =>{
 
   const AppDispatch = useAppDispatch()
   const [data,setData] = useState<ITask>(intialTask)
   const [newModal, setNewModal] = useState<boolean>(false)
+
+  console.log(data)
 
   return (
     <>
@@ -58,9 +62,26 @@ const NewTask = ({ date }:NewTaskProps) =>{
 
           <Input  
             type='time'
-            label='time'
+            label='Time Start'
             placeholder={'time'}
-            onChange={(e:any) => setData({ ...data , time: { ...data.time, time: e.target.value } })}/>
+            onChange={(e:any) => setData({ ...data , time: { ...data.time, timeStart: e.target.value } })}/>
+
+          <Input  
+            type='time'
+            label='Time End'
+            placeholder={'time'}
+            onChange={(e:any) => setData({ ...data , time: { ...data.time, timeEnd: e.target.value } })}/>
+
+          <div>
+            <label>Tags</label>
+            <select multiple  onChange={(e:any) => setData({ ...data , tags: [...data.tags, e.target.value] })}>
+              {tags.map(t => 
+                <option value={t._id} key={t._id}>
+                  {t.title}
+                </option>
+              )}
+            </select>
+          </div>
 
           <div className='centerRow'>
             <Button text='Cancel' size='small' primary={false} onClick={() => setNewModal(false)}/>

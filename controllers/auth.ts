@@ -7,7 +7,6 @@ const secret = 'secret'
 
 
 const login = async (req : Request,res:Response) => {
-	console.log('called')
 	try {
 		const user = await userModel.findOne({ email: req.body.email })
 		if (!user || !user.validatePassword(req.body.password)) {

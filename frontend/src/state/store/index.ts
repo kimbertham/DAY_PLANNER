@@ -6,6 +6,7 @@ import { authSlice } from './auth'
 import { habitSlice } from './habits'
 import { journalSlice } from './journal'
 import { taskSlice } from './tasks'
+import { mealSlice } from './meal'
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +17,8 @@ const reducers =  combineReducers({
   auth: authSlice.reducer,
   habits: habitSlice.reducer,
   journals: journalSlice.reducer,
-  tasks: taskSlice.reducer
+  tasks: taskSlice.reducer,
+  meal: mealSlice.reducer
 })
 
 export const store = configureStore({

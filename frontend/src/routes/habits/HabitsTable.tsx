@@ -17,6 +17,7 @@ const HabitsTable = ({ habits, dateLength }:HabitsTableProps) => {
   const AppDispatch = useAppDispatch()
   const currentDay = moment().format('YYYY-MM-DD')
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [date, setDate] = useState(currentDay)
 
   const getDate = () => {

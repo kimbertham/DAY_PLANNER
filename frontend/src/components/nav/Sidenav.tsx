@@ -61,13 +61,16 @@ const Sidenav = () => {
 
       <div className={styles.item}>
         <img src={work} alt='work'/>
-        {!collapse && <p>Work</p>}
+        {!collapse && <p>Shopping</p>}
       </div>
 
-      <div className={styles.item}>
-        <img src={diet} alt='meal'/>
-        {!collapse && <p>Meal</p>}
-      </div>
+      <Link to='/meal'>
+
+        <div className={styles.item}>
+          <img src={diet} alt='meal'/>
+          {!collapse && <p>Meal</p>}
+        </div>
+      </Link>
 
       <div className={styles.arrows} onClick={() =>setCollapse(!collapse)}>
         {collapse ?  <p>	&#60; &gt; </p> : <p> &gt;	&#60; </p>} 

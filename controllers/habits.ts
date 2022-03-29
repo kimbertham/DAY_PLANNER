@@ -12,7 +12,6 @@ async function getHabit(req: ICustomReq, res: Response, next: NextFunction) {
 					limit: 7
 			}})
 			: await habitModel.findById(req.params.id)
-			console.log(habits)
 		res.status(200).json(habits)
 	} catch (err) {
 		next(err)

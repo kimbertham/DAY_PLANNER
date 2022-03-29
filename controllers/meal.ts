@@ -1,6 +1,7 @@
 import { Response, NextFunction } from 'express'
 import { mealModel } from '../models/meals'
 import {ICustomReq} from '../lib/customReq'
+import { time } from 'console'
 
 
 async function getMeal(req: ICustomReq, res: Response, next: NextFunction) {
@@ -9,6 +10,25 @@ async function getMeal(req: ICustomReq, res: Response, next: NextFunction) {
 			await mealModel.find({ owner: req.currentUser}) 
 			: await mealModel.findById(req.params.id)
 		res.status(200).json(journal)
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function getMealByDate(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const meals = await mealModel.find({
+			owner: req.currentUser,
+			'time.date': {$gte: req.body.startDate, $lte: req.body.endDate}
+			})
+
+			const grouped = meals.reduce((r, a)  => {
+				r[a.time.date.toString()] = r[a.time.date.toString()] || []
+				r[a.time.date.toString()].push(a)
+				return r
+			}, Object.create(null))
+		
+		res.status(200).json(grouped)
 	} catch (err) {
 		next(err)
 	}
@@ -46,5 +66,6 @@ module.exports = {
 	getMeal,
 	newMeal,
 	delMeal,
-	updateMeal
+	updateMeal,
+	getMealByDate
 }

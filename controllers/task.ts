@@ -1,5 +1,5 @@
 import { Response, NextFunction } from 'express'
-import { taskModel } from '../models/tasks'
+import { taskModel, taskTagModel } from '../models/tasks'
 import {ICustomReq} from '../lib/customReq'
 
 
@@ -19,7 +19,7 @@ async function getTaskByDate(req: ICustomReq, res: Response, next: NextFunction)
 		const tasks = await taskModel.find({	
 			owner: req.currentUser, 
 			'time.date': req.params.date 
-		})
+		}).populate({path:'tags'})
 		res.status(200).json(tasks)
 	} catch (err) {
 		next(err)
@@ -56,10 +56,45 @@ async function updateTask(req: ICustomReq, res: Response, next: NextFunction) {
 	}
 }
 
+
+//------------------ tags ---------------------------
+
+async function getTags(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const tags = await taskTagModel.find({ owner: req.currentUser}) 
+		res.status(200).json(tags)
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function newTag(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		req.body.owner = req.currentUser
+		const newTag = await taskTagModel.create(req.body)
+		res.status(201).json(newTag)
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function delTag(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+			await taskModel.findById(req.params.id)
+			res.status(204).json()
+	} catch (err) {
+		next(err)
+	}
+}
+
+
 module.exports = {
 	getTask,
 	getTaskByDate,
 	newTask,
 	delTask,
-	updateTask
+	updateTask,
+	getTags,
+	delTag,
+	newTag
 }

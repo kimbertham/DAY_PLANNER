@@ -35,6 +35,17 @@ router.route('/delTask/:taskId')
 router.route('/updateTask')
 	.post(secureRoute, task.updateTask)
 
+//------tags ----------------------
+
+router.route('/getTags')
+	.get(secureRoute, task.getTags)
+
+router.route('/newTag')
+	.post(secureRoute, task.newTag)
+
+router.route('/delTag/:id')
+	.delete(secureRoute, task.delTag)
+
 //-------------habits---------------
 
 router.route('/getHabit')
@@ -86,6 +97,9 @@ router.route('/updateJournal')
 
 	router.route('/getMeal')
 	.post(secureRoute, meal.getMeal)
+
+	router.route('/getMealByDate')
+	.post(secureRoute, meal.getMealByDate)
 
 router.route('/newMeal')
 	.post(secureRoute, meal.newMeal)

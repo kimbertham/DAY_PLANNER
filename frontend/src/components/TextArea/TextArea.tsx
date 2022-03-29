@@ -1,33 +1,27 @@
 import { readable } from '../../lib/common'
 import React from 'react'
-import styles from './styles/input.module.scss'
+import styles from '../Input/styles/input.module.scss'
 
-
-interface InputProps {
+interface TextAreaProps {
   label: string;
-  type?: string;
-  name?: string;
-  value?:string;
   className?: string;
   placeholder?:string;
   onChange?: (e:any) => void;
   onKeyDown?:  (e:any) => void;
 }
 
-export const Input = ({ type, name, className, label,onChange, placeholder, onKeyDown }:InputProps) => {
+export const TextArea = ({ className, label,onChange, placeholder, onKeyDown }:TextAreaProps) => {
   return (
 
     <div className={styles.formField}>     
       <label>{readable(label)}</label>
-      <input
-        name={name ? name : readable(label)}
-        type={type}
+      <textarea      
         placeholder={placeholder ?  placeholder : readable(`Enter ${label}`)}
         className={className}
         onChange ={onChange}
-        onKeyDown={onKeyDown}
-        autoComplete='off'
-      />
+        onKeyDown={onKeyDown}>
+      </textarea>
+
     </div>
   )
 }

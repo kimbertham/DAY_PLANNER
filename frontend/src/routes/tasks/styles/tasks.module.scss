@@ -1,0 +1,44 @@
+@import '../../../main.scss';
+
+
+.tagMenu {
+  min-height: 85vh;
+  width: 180px;
+}
+
+
+.agenda {
+  width: 45vw; 
+  padding: 0 25px;
+  background-color: rgb(21, 21, 21);
+  // border: 2px solid red;
+
+  .timeTable{
+    overflow: scroll;
+    max-height: 73vh;
+    // border: 2px solid red;
+
+    scroll-bar {
+      display: none;
+  
+    }
+  }
+
+}
+
+.taskUnit {
+  .date {
+    width: 50px;
+    border-right: 1px solid grey ;
+  }
+
+  .content {
+    @extend .flex;
+    flex-direction: column;
+
+    p {
+      margin: 10px 0;
+    }
+  }
+}
+
