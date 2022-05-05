@@ -11,7 +11,9 @@ import Habits from './routes/habits/Habits'
 import HabitDetail from './routes/habits/HabitDetail'
 import Journal from './routes/journal/Journal'
 import Tasks from './routes/tasks/Tasks'
-import Meal from './routes/meals/meal'
+import Diet from './routes/diet/Diet'
+import MealPage from './routes/diet/meals/MealPage'
+import Recipes from './routes/diet/recipes/Recipes'
 const App = () => {
 
   return ( 
@@ -29,7 +31,9 @@ const App = () => {
               <Route path='/habits' component={Habits}/>
               <Route path='/journal' component={Journal}/>
               <Route path='/tasks' component={Tasks}/>
-              <Route path='/meal' component={Meal}/>
+              <Route path='/diet/:date' component={MealPage}/>
+              <Route path='/diet' component={Diet}/>
+              <Route path='/recipes' component={Recipes}/>
             </Switch>
           </div>
         </div>    

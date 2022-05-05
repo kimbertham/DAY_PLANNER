@@ -5,8 +5,8 @@ import {EMeals} from '../frontend/src/types/meal'
 export interface IMeal {
   title: string
   time: {
-    date: Date
-    time?: number
+    date: string
+    time: string
   },
   type: EMeals
   owner?: IUser
@@ -19,16 +19,26 @@ const taskSchema = new mongoose.Schema({
 	title: { type: String, required: true },
 	time: {
 		date: { type: String, required: true },
-		time: { type: String, required: false }
+		time: { type: String, required: true }
 	},
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  recipe: { type: String, required: false},
-  ingredients: [{ type: String, required: false}],
   type: { type: String, enum:[EMeals]},
-  calories: {type: Number, required: false}
+}, {
+	strict: false
+})
+
+const recipeSchema = new mongoose.Schema({
+	title: { type: String, required: true },
+	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  method: { type: String, required: false},
+  ingredients: [{ type: String, required: false}],
+  calories: {type: Number, required: false},
+  image: [{ type: String, required: false}],
+	meal: { type: mongoose.Schema.Types.ObjectId, ref: 'Meal', required: false}
 }, {
 	timestamps: true,
 	strict: false
 })
 
 export const mealModel = mongoose.model<IMeal>('Meal', taskSchema)
+export const recipeModel = mongoose.model('Recipe', recipeSchema)

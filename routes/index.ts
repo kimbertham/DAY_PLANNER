@@ -110,6 +110,9 @@ router.route('/delMeal')
 router.route('/updateMeal')
 	.post(secureRoute, meal.updateMeal)
 
+	router.route('/getRecipes')
+	.get(secureRoute, meal.getRecipes)
+
 	//---------------------------------
 
 

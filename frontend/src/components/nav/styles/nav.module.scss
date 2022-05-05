@@ -39,17 +39,18 @@
 
 .topnav{
   @extend .flex;
-  height: 8vh;
+  height: 6vh;
   align-items: center;
   justify-content: flex-end;
   background-color: rgb(16, 16, 16);
   font-size: 12px;
+  margin-bottom: 5px;
   .topIcons {
     @extend .flex;
     justify-content: space-evenly;
     width: 15vw;
     .icon{
-    width: 1.5vw;
+    width: 1vw;
     align-self: center;
     }
   }
@@ -59,7 +60,7 @@
     flex-direction: row;
     img {
       margin:0 10px;
-      width: 2vw;
+      width: 1.5vw;
       border-radius: 50%;
     }
   }

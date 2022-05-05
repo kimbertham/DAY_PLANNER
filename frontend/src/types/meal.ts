@@ -13,11 +13,19 @@ export interface IMeal {
   title: string;
   time: {
     date: string;
-    time?: string;
+    time: string;
   };
   type?: EMeals;
   owner?: IUser;
-  recipe?: string;
+  recipe?: IRecipe;
+
+}
+
+export interface IRecipe {
+  id?:string;
+  title?: string;
+  method?: string;
   ingredients: string[];
-  calories?: string;
+  calories?: number;
+  image?: string
 }

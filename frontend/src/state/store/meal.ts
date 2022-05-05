@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IMeal } from '../../types/meal'
-import { newMeal,getMealByDate } from '../thunks/meal'
+import { IMeal, IRecipe } from '../../types/meal'
+import { sortByTime } from '../../lib/common'
+import { newMeal,getMealByDate, getRecipes, newRecipe } from '../thunks/meal'
 
 interface InitialMeals {
-  meals: IMeal[],
-  groupedMeals: {[key: string]: IMeal[]}
+  meals:   IMeal[],
+  recipes: IRecipe[]
 
 }
 
 const initialState : InitialMeals = { 
   meals: [],
-  groupedMeals: {}
+  recipes: []
 } 
 
 export const mealSlice = createSlice({
@@ -20,10 +21,16 @@ export const mealSlice = createSlice({
   }, 
   extraReducers: (builder) => {
     builder.addCase(newMeal.fulfilled , (state, action) => {
-      state.meals = [...state.meals, action.payload]
+      state.meals = sortByTime([...state.meals, action.payload])
     })
     builder.addCase(getMealByDate.fulfilled , (state, action) => {
-      state.groupedMeals = action.payload
+      state.meals = sortByTime(action.payload)
+    })
+    builder.addCase(getRecipes.fulfilled , (state, action) => {
+      state.recipes = action.payload
+    })
+    builder.addCase(newRecipe.fulfilled , (state, action) => {
+      state.recipes = [...state.recipes, action.payload]
     })
   }
 })

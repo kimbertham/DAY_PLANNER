@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IMeal } from '../../types/meal'
+import { IMeal, IRecipe } from '../../types/meal'
 import { meals } from '../actions/meal'
 
 
@@ -31,5 +31,19 @@ export const delMeal = createAsyncThunk(
 export const updateMeal = createAsyncThunk(
   'meals/update', (data:IMeal) => {
     return  meals.updateMeal(data)
+  }
+)
+
+//-------Recipes------
+
+export const newRecipe = createAsyncThunk(
+  'recipes/new', (data:IRecipe) => {
+    return  meals.newRecipe(data)
+  }
+)
+
+export const getRecipes = createAsyncThunk(
+  'recipes/get', () => {
+    return  meals.getRecipes()
   }
 )

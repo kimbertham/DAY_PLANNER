@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express'
-import { mealModel } from '../models/meals'
+import { IMeal, mealModel, recipeModel } from '../models/meals'
 import {ICustomReq} from '../lib/customReq'
-import { time } from 'console'
+import { group, time } from 'console'
 
 
 async function getMeal(req: ICustomReq, res: Response, next: NextFunction) {
@@ -21,14 +21,7 @@ async function getMealByDate(req: ICustomReq, res: Response, next: NextFunction)
 			owner: req.currentUser,
 			'time.date': {$gte: req.body.startDate, $lte: req.body.endDate}
 			})
-
-			const grouped = meals.reduce((r, a)  => {
-				r[a.time.date.toString()] = r[a.time.date.toString()] || []
-				r[a.time.date.toString()].push(a)
-				return r
-			}, Object.create(null))
-		
-		res.status(200).json(grouped)
+		res.status(200).json(meals)
 	} catch (err) {
 		next(err)
 	}
@@ -62,10 +55,35 @@ async function updateMeal(req: ICustomReq, res: Response, next: NextFunction) {
 	}
 }
 
+
+//-----------Recipes --------------
+
+
+async function getRecipes(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const recipes = await recipeModel.find({ owner: req.currentUser}) 
+		res.status(200).json(recipes)
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function newRecipe(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		req.body.owner = req.currentUser
+		const newRecipe= await recipeModel.create(req.body)
+		res.status(201).json(newRecipe)
+	} catch (err) {
+		next(err)
+	}
+}
+
 module.exports = {
 	getMeal,
 	newMeal,
 	delMeal,
 	updateMeal,
-	getMealByDate
+	getMealByDate,
+	getRecipes,
+	newRecipe
 }

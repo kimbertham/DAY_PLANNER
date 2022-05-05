@@ -1,7 +1,7 @@
 import React from 'react'
 import Habits from '../habits/Habits'
 import Journal from '../journal/Journal'
-import Meal from '../meals/meal'
+import Diet from '../diet/Diet'
 import Tasks from '../tasks/Tasks'
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
       <Tasks/>
       <Habits/>
       <Journal/>
-      <Meal/>
+      <Diet/>
     </div>
   )
 }

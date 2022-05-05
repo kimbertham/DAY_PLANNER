@@ -64,11 +64,11 @@ const Sidenav = () => {
         {!collapse && <p>Shopping</p>}
       </div>
 
-      <Link to='/meal'>
+      <Link to='/diet'>
 
         <div className={styles.item}>
           <img src={diet} alt='meal'/>
-          {!collapse && <p>Meal</p>}
+          {!collapse && <p>Diet</p>}
         </div>
       </Link>
 
