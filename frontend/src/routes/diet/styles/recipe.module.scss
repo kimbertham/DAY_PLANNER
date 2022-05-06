@@ -1,0 +1,40 @@
+@import '../../../main.scss';
+
+
+//----recipe cards 
+
+.recipeCont {
+  @extend .cl;
+  width: 150px;
+  height : 150px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid blue;
+
+  img {
+    width: 80px;
+  }
+}
+
+//---Recipe Form 
+
+.selectField {
+  label { 
+    display: block; 
+  }
+  select {
+    width: 100%; 
+  }
+}
+
+.addRecipe {
+  @extend .flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+}
+.typeCont {
+  @extend .flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+

@@ -32,6 +32,14 @@ export const meals = {
   getRecipes: async () => {
     const res = await axios.get('/api/getRecipes', headers)
     return res.data
+  },
+  delRecipe: async (data: IRecipe ) => {
+    const res = await axios.post('/api/delRecipe', data, headers)
+    return res.data
+  },
+  updateRecipe: async (data: IRecipe) => {
+    const res = await axios.post('/api/updateRecipe', data, headers)
+    return res.data
   }
 }
 

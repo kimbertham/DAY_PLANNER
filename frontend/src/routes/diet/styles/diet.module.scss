@@ -6,7 +6,7 @@
 }
 
 .menuSettings {
-  @extend .flex, .centerRow;
+  @extend .flex, .cr;
 
   .menuButtons {
     border:1px solid rgb(0, 36, 128);
@@ -90,10 +90,8 @@
 
 .mealNav {
   @extend .flex;
-  // border: 2px solid red;
-
   .mealNavItem{
-  @extend .flex, .centerRow;
+  @extend .flex, .cr;
   flex:1;
   margin: 5px;
   padding: 10px;
@@ -108,22 +106,9 @@
 
     .mealNavIcon {
     width: 40px;
-    // border: 2px solid red;
     margin: 0;
     }
   }
 }
 
 
-.recipeCont {
-  @extend .centerCol;
-  width: 150px;
-  height : 150px;
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid blue;
-
-  img {
-    width: 80px;
-  }
-}

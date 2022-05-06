@@ -47,7 +47,7 @@ const NewHabit = () => {
             )}
           </div>
 
-          <div className='centerRow'>
+          <div className='cr'>
             <Button text='Cancel' size='small' primary={false} onClick={() => setNewModal(false)}/>
             <Button text='Submit' size='small' primary={true} onClick={()=>{
               AppDispatch(newHabit(data))

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IMeal, IRecipe } from '../../types/meal'
 import { sortByTime } from '../../lib/common'
-import { newMeal,getMealByDate, getRecipes, newRecipe } from '../thunks/meal'
+import { newMeal,getMealByDate, getRecipes, newRecipe, delRecipe,updateRecipe } from '../thunks/meal'
 
 interface InitialMeals {
   meals:   IMeal[],
@@ -31,6 +31,13 @@ export const mealSlice = createSlice({
     })
     builder.addCase(newRecipe.fulfilled , (state, action) => {
       state.recipes = [...state.recipes, action.payload]
+    })
+    builder.addCase(delRecipe.fulfilled , (state, action) => {
+      state.recipes = [...state.recipes.filter(r => r.id !== action.meta.arg.id)]
+    })
+    builder.addCase(updateRecipe.fulfilled , (state, action) => {
+      const i = state.recipes.findIndex(r => r.id === action.payload._d)
+      state.recipes[i] = action.payload
     })
   }
 })

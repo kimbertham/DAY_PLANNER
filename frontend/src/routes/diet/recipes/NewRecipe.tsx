@@ -5,18 +5,31 @@ import { TextArea } from '../../../components/TextArea/TextArea'
 import { IRecipe } from '../../../types/meal'
 import { newRecipe } from '../../../state/thunks/meal'
 import { CreateForm } from '../../../components/CreateForm/CreateForm'
+import ImageUpload from '../../../components/ImageUpload/ImageUpload'
 import styles from '../styles/diet.module.scss'
 
-const initRecipe: IRecipe = { id: '', title: '', method: '', ingredients: [], calories: 0, image: '' }
+interface NewRecipeProps {
+  buttonType? : 'Small' | 'Large'
+}
 
-const NewRecipe = () => { 
+const initRecipe: IRecipe = { id: '', title: '', method: '', ingredients: [], calories: 0 }
+
+const NewRecipe = ({ buttonType }: NewRecipeProps) => { 
 
   const [data, setData] = useState<IRecipe>(initRecipe)
   const AppDispatch = useAppDispatch()
-
+  console.log(data)
   return (
     <>
-      <CreateForm title='Recipe' submit={() => AppDispatch(newRecipe(data))}>
+      <CreateForm title='New Recipe' buttonType={buttonType} submit={() => AppDispatch(newRecipe(data))}>
+
+        <Input  
+          type='text'
+          label='Title'
+          onChange={(e) => setData({ ...data, title: e.target.value })}
+        />
+
+
         <Input  
           type='number'
           label='Calories'
@@ -30,7 +43,7 @@ const NewRecipe = () => {
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault()
-              setData({ ...data ,  ingredients: [data.ingredients, e.target.value] })
+              setData({ ...data ,  ingredients: [...data.ingredients, e.target.value] })
               e.target.value = ''
             } 
           }}
@@ -44,6 +57,8 @@ const NewRecipe = () => {
                 className={styles.delIng}>x</small>
             </div>)}
         </div>
+
+        <ImageUpload/>
 
         <TextArea 
           label='Recipe'

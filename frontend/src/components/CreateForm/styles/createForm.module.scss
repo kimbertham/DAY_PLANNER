@@ -1,0 +1,21 @@
+
+.form {
+width: 30vw;
+}
+
+.smallCreateButton {
+  outline: none;
+  border:none;
+  background-color: transparent;
+  font-size: 10px;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    color: rgb(76, 91, 255);
+  }
+}
+
+.LargeCreateButton {
+
+}
+

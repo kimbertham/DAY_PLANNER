@@ -1,0 +1,16 @@
+@import '../../main.scss';
+
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+
+  input {
+    display: block;
+    flex-grow: 1;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding: 10px;
+    margin:5px 0;
+  }
+}

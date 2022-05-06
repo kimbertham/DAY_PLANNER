@@ -78,12 +78,35 @@ async function newRecipe(req: ICustomReq, res: Response, next: NextFunction) {
 	}
 }
 
+
+async function delRecipe(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+  await recipeModel.findOneAndDelete(req.body.id)
+		res.status(204).json()
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function updateRecipe(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const recipe = await recipeModel.findOneAndUpdate(req.body.id, req.body.data)
+		res.status(204).json(recipe)
+	} catch (err) {
+		next(err)
+	}
+}
+
+
 module.exports = {
 	getMeal,
 	newMeal,
 	delMeal,
 	updateMeal,
 	getMealByDate,
+
 	getRecipes,
-	newRecipe
+	newRecipe,
+	delRecipe,
+	updateRecipe,
 }

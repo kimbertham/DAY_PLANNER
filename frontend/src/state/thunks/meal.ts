@@ -47,3 +47,15 @@ export const getRecipes = createAsyncThunk(
     return  meals.getRecipes()
   }
 )
+
+export const delRecipe = createAsyncThunk(
+  'recipes/del', (data:IRecipe) => {
+    return  meals.delRecipe(data)
+  }
+)
+
+export const updateRecipe = createAsyncThunk(
+  'recipes/update', (data:IRecipe) => {
+    return  meals.updateRecipe(data)
+  }
+)

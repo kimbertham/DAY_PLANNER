@@ -33,7 +33,7 @@ const recipeSchema = new mongoose.Schema({
   method: { type: String, required: false},
   ingredients: [{ type: String, required: false}],
   calories: {type: Number, required: false},
-  image: [{ type: String, required: false}],
+  image: { type: String, required: false},
 	meal: { type: mongoose.Schema.Types.ObjectId, ref: 'Meal', required: false}
 }, {
 	timestamps: true,

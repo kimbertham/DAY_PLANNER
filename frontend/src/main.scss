@@ -5,6 +5,18 @@ body {
   font-family: 'Lexend', sans-serif;
 }
 
+.right {
+  @extend .flex, .flex-grow;
+  flex-direction: column;
+}
+
+.content {
+  @extend .flex, .flex-grow;
+  padding: 5px 10px;
+}
+
+//------------
+
 .fp {
   width: 100vw;
   height: 100vh;
@@ -14,15 +26,20 @@ body {
   width: 100%;
 }
 
-.centerCol {
+.border{ 
+  border: 2px solid red;
+}
+
+
+.cl {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.centerRow {
-  @extend .centerCol;
+.cr {
+  @extend .cl;
   flex-direction: row;
 }
 
@@ -42,15 +59,14 @@ body {
   flex-wrap: wrap
 }
 
-.right {
-  @extend .flex, .flex-grow;
-  flex-direction: column;
+.pointer {
+  cursor: pointer;
 }
 
-.content {
-  @extend .flex, .flex-grow;
-  padding: 5px 10px;
+.absolute {
+  position: absolute;
 }
+
 
 .capitalize {
 &:first-letter {
@@ -67,31 +83,8 @@ body {
   padding: 15px;
 }
 
-.f-right{
+.fri{
   float: right;
 }
 
-.formField {
-  margin: 10px 10px;
 
-  label {
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  input, textarea {
-    background-color:rgb(201, 201, 201);
-    width: 100%;
-    outline: none;
-    border: none;
-  }
-
-  input {
-    height: 18px;
-  }
-
-  textarea{
-    min-height: 80px;
-  }
-
-}

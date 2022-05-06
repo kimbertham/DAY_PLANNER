@@ -36,7 +36,7 @@ const NewTask = () =>{
             placeholder={'title'}
             onChange={(e:any) => setData({ ...data, 'color': e.target.value })}/>
 
-          <div className='centerRow'>
+          <div className='cr'>
             <Button text='Cancel' size='small' primary={false} onClick={() => setNewModal(false)}/>
             <Button text='Submit' size='small' primary={true} onClick={() => AppDispatch(newTag(data))}/>
           </div>

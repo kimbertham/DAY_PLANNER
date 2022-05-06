@@ -2,7 +2,7 @@
 
 
 .Sidenav {
-  @extend .centerCol;
+  @extend .cl;
   width: 15vw;
   height: 100vh;
   background-color: rgb(16, 16, 16);
@@ -56,7 +56,7 @@
   }
 
   .topnavProfile {
-    @extend .centerCol;
+    @extend .cl;
     flex-direction: row;
     img {
       margin:0 10px;
