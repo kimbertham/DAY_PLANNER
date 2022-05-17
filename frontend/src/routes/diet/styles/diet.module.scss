@@ -88,9 +88,10 @@
 }
 
 
-.mealNav {
+.dietNav {
   @extend .flex;
-  .mealNavItem{
+
+  .dietNavItem{
   @extend .flex, .cr;
   flex:1;
   margin: 5px;
@@ -102,9 +103,10 @@
   
     p {
     margin: 0 10px;
+    color: white;
     }
 
-    .mealNavIcon {
+    .dietNavIcon {
     width: 40px;
     margin: 0;
     }

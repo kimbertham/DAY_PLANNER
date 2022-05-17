@@ -8,14 +8,16 @@ interface TextAreaProps {
   placeholder?:string;
   onChange?: (e:any) => void;
   onKeyDown?:  (e:any) => void;
+  value?: any
 }
 
-export const TextArea = ({ className, label,onChange, placeholder, onKeyDown }:TextAreaProps) => {
+export const TextArea = ({ className, label,onChange, placeholder, onKeyDown, value }:TextAreaProps) => {
   return (
 
     <div className={styles.formField}>     
       <label>{readable(label)}</label>
       <textarea      
+        value={value}
         placeholder={placeholder ?  placeholder : readable(`Enter ${label}`)}
         className={className}
         onChange ={onChange}

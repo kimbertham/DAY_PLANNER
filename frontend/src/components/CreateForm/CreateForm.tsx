@@ -18,7 +18,7 @@ export const CreateForm = ({ title, submit, children, onCancel, buttonType }:Cre
     <>
       <button className={buttonType === 'Small' ? Styles.smallCreateButton : Styles.largeCreateButton} 
         onClick={() => setNewModal(true)}>
-          + {title}
+        {title}
       </button>
 
       {newModal && <Modal closeModal={() => {

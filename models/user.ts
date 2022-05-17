@@ -6,6 +6,7 @@ export interface IUser {
     lastName: string,
     email: string,
     password: string,
+    caloriries? :number;
     validatePassword : (password: string) => boolean
 }
 
@@ -13,7 +14,8 @@ const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true, maxlength: 50 },
   lastName: { type: String, required: true, maxlength: 50 },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  calories: {type:Number , required: false}
   
 }, {
   timestamps: true

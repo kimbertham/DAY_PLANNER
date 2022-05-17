@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express'
 import { IMeal, mealModel, recipeModel } from '../models/meals'
 import {ICustomReq} from '../lib/customReq'
+import { userModel } from '../models/user'
 import { group, time } from 'console'
-
 
 async function getMeal(req: ICustomReq, res: Response, next: NextFunction) {
 	try {
@@ -97,7 +97,25 @@ async function updateRecipe(req: ICustomReq, res: Response, next: NextFunction) 
 	}
 }
 
+//-----set Caloties ----
 
+async function setCalories(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const recipe = await userModel.findOneAndUpdate(req.body.id, req.body.data)
+		res.status(204).json(recipe)
+	} catch (err) {
+		next(err)
+	}
+}
+
+async function updateCalories(req: ICustomReq, res: Response, next: NextFunction) {
+	try {
+		const recipe = await recipeModel.findOneAndUpdate(req.body.id, req.body.data)
+		res.status(204).json(recipe)
+	} catch (err) {
+		next(err)
+	}
+}
 module.exports = {
 	getMeal,
 	newMeal,

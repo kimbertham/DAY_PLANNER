@@ -3,29 +3,33 @@ import { useAppDispatch } from '../../../state/hooks'
 import { Input } from '../../../components/Input/Input'
 import { TextArea } from '../../../components/TextArea/TextArea'
 import { IRecipe } from '../../../types/meal'
-import { newRecipe } from '../../../state/thunks/meal'
+import { newRecipe, updateRecipe } from '../../../state/thunks/meal'
 import { CreateForm } from '../../../components/CreateForm/CreateForm'
 import ImageUpload from '../../../components/ImageUpload/ImageUpload'
 import styles from '../styles/diet.module.scss'
 
 interface NewRecipeProps {
-  buttonType? : 'Small' | 'Large'
+  buttonType? : 'Small' | 'Large';
+  insertData?: IRecipe;
+  title?:string;
 }
 
 const initRecipe: IRecipe = { id: '', title: '', method: '', ingredients: [], calories: 0 }
 
-const NewRecipe = ({ buttonType }: NewRecipeProps) => { 
+const NewRecipe = ({ buttonType, insertData , title }: NewRecipeProps) => { 
 
-  const [data, setData] = useState<IRecipe>(initRecipe)
+  const [data, setData] = useState<IRecipe>(insertData ? insertData : initRecipe)
   const AppDispatch = useAppDispatch()
-  console.log(data)
+
   return (
     <>
-      <CreateForm title='New Recipe' buttonType={buttonType} submit={() => AppDispatch(newRecipe(data))}>
+      <CreateForm title={title || 'New Recipe'} buttonType={buttonType} 
+        submit={() => insertData ? AppDispatch(updateRecipe(data)) : AppDispatch(newRecipe(data))}>
 
         <Input  
           type='text'
           label='Title'
+          value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
         />
 
@@ -33,6 +37,7 @@ const NewRecipe = ({ buttonType }: NewRecipeProps) => {
         <Input  
           type='number'
           label='Calories'
+          value={data.calories}
           onChange={(e) => setData({ ...data, calories: e.target.value })}
         />
 
@@ -63,6 +68,7 @@ const NewRecipe = ({ buttonType }: NewRecipeProps) => {
         <TextArea 
           label='Recipe'
           placeholder='...Enter Recipe'
+          value={data.method}
           onChange={(e:any) => setData({ ...data, method: e.target.value })}/>
 
       </CreateForm>

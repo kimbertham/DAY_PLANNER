@@ -31,7 +31,6 @@ const register = async (req : Request,res:Response) => {
 }
 
 
-
 module.exports = {
 	login,
 	register

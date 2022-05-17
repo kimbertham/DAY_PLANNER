@@ -14,6 +14,8 @@ import Tasks from './routes/tasks/Tasks'
 import Diet from './routes/diet/Diet'
 import MealPage from './routes/diet/meals/MealPage'
 import Recipes from './routes/diet/recipes/Recipes'
+import Calories from './routes/diet/calories/Calories'
+
 const App = () => {
 
   return ( 
@@ -34,6 +36,7 @@ const App = () => {
               <Route path='/diet/:date' component={MealPage}/>
               <Route path='/diet' component={Diet}/>
               <Route path='/recipes' component={Recipes}/>
+              <Route path='/calories' component={Calories}/>
             </Switch>
           </div>
         </div>    

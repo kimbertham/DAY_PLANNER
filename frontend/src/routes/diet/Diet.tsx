@@ -7,6 +7,7 @@ import MealDateCard from './meals/MealCards'
 import DietNav from './DietNav'
 import NewMeal  from './meals/NewMeal'
 import moment from 'moment'
+import CalorieCounter from './calories/CalorieCounter'
 
 const Meal = () => {
   const AppDispatch = useAppDispatch()
@@ -43,6 +44,7 @@ const Meal = () => {
   
       <DietNav/>
 
+      <CalorieCounter/>
       <NewMeal 
         recipes={recipes}/>
 

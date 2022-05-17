@@ -21,7 +21,7 @@ const NewMeal = ({ recipes } : NewDietProps) => {
 
   return (
     <>
-      <CreateForm title='Meal' submit={() => AppDispatch(newMeal(data))}>
+      <CreateForm title='New Meal' submit={() => AppDispatch(newMeal(data))}>
 
         <Input  
           type='text'
